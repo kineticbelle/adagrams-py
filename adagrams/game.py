@@ -21,7 +21,7 @@ def draw_letters():
         'M': 2, 
         'N': 6, 
         'O': 8, 
-        'P': 2,
+        'P': 2, 
         'Q': 1, 
         'R': 6, 
         'S': 4, 
@@ -95,4 +95,20 @@ def score_word(word):
     return total_score        
 
 def get_highest_word_score(word_list):
-    pass
+    highest_word = word_list[0]
+    highest_score = score_word(highest_word)
+    
+    for i in range(1, len(word_list)):
+        word = word_list[i]
+        score = score_word(word)
+        
+        if score > highest_score:
+            highest_word = word
+            highest_score = score
+        elif score == highest_score:
+            if len(highest_word) != 10:
+                if len(word) == 10 or len(word) < len(highest_word):
+                    highest_word = word
+                    highest_score = score
+    
+    return (highest_word, highest_score)
